@@ -7,6 +7,7 @@ include_once("wordix.php");
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* ... COMPLETAR ... */
+/*Antinao, Nicolas. 4353. TUDW. nicoantinao1998@gmail.com. Nico13A*/
 
 
 
