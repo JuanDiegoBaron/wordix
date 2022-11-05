@@ -28,6 +28,9 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 
 /**
  *  ****COMPLETAR*****
+ * @param int $min
+ * @param int $max
+ * @return int
  */
 function solicitarNumeroEntre($min, $max)
 {
@@ -113,6 +116,7 @@ function escribirSegunEstado($texto, $estado)
 
 /**
  * ****COMPLETAR*****
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -126,6 +130,8 @@ function escribirMensajeBienvenida($usuario)
 
 /**
  * ****COMPLETAR*****
+ * @param string $cadena
+ * @return boolean
  */
 function esPalabra($cadena)
 {
@@ -142,6 +148,7 @@ function esPalabra($cadena)
 
 /**
  *  ****COMPLETAR*****
+ * @return string
  */
 function leerPalabra5Letras()
 {
