@@ -344,16 +344,22 @@ function obtenerPuntajeWordix($nroIntento,$palabraIntento)  /* ****COMPLETAR****
     switch($nroIntento){
         case 1:
             $totalPuntos+=6;
+            break; 
         case 2:
             $totalPuntos+=5;
+            break;
         case 3:
             $totalPuntos+=4;
+            break;            
         case 4:
             $totalPuntos+=3;
+            break;
         case 5:
             $totalPuntos+=2;
+            break;
         case 6:
             $totalPuntos+=1;
+            break;
         default:
             return 0;        
     }
