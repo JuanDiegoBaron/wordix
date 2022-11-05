@@ -332,6 +332,7 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
+ * Devuelve el puntaje obtenido en la partida.
  * @param $nroIntento INT
  * @param $palabraIntento STRING
  * @return INT
