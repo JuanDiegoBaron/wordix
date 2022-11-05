@@ -152,6 +152,7 @@ function esPalabra($cadena)
 /**
  *  ****COMPLETAR*****
  * Devuelve la palabra ingresada por el usuario en mayusculas si es una palabra de 5 letras y tiene caracteres solo alfabeticos.
+ *  
  * @return string
  */
 function leerPalabra5Letras()
@@ -333,11 +334,41 @@ function esIntentoGanado($estructuraPalabraIntento)
 /**
  * ****COMPLETAR***** documentación de la intefaz
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($nroIntento,$palabraIntento)  /* ****COMPLETAR***** parámetros formales necesarios */
 {
-
+    // INT $totalPuntos, $i
+    $totalPuntos=0;
+    switch($nroIntento){
+        case 1:
+            $totalPuntos+=6;
+        case 2:
+            $totalPuntos+=5;
+        case 3:
+            $totalPuntos+=4;
+        case 4:
+            $totalPuntos+=3;
+        case 5:
+            $totalPuntos+=2;
+        case 6:
+            $totalPuntos+=1;
+        default:
+            return 0;        
+    }
+    for ($i=0;$i<=strlen($palabraIntento);$i++){
+        switch($palabraIntento[$i]){
+            case "A","E","I","O","U":
+                $totalPuntos+=1;
+            case "B","C","D","F","G","H","J","K","L","M":
+                $totalPuntos+=2;    
+            case "N","P","Q","R","S","T","V","W","X","Y","Z":
+                $totalPuntos+=3;
+            default:
+                return 0;
+        }
+    }
+    return $totalPuntos;
     /* ****COMPLETAR***** cuerpo de la función*/
-    return 0;
+    // return 0;
 }
 
 /**
@@ -372,7 +403,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     if ($ganoElIntento) {
         $nroIntento--;
-        $puntaje = obtenerPuntajeWordix();
+        $puntaje = obtenerPuntajeWordix($nroIntento,$palabraIntento);
         echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento
