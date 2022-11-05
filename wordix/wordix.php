@@ -332,7 +332,9 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ * @param $nroIntento INT
+ * @param $palabraIntento STRING
+ * @return INT
  */
 function obtenerPuntajeWordix($nroIntento,$palabraIntento)  /* ****COMPLETAR***** parámetros formales necesarios */
 {
