@@ -356,7 +356,7 @@ function obtenerPuntajeWordix($nroIntento,$palabraIntento)  /* ****COMPLETAR****
         default:
             return 0;        
     }
-    for ($i=0;$i<=strlen($palabraIntento);$i++){
+    for ($i=0;$i<strlen($palabraIntento);$i++){
         switch($palabraIntento[$i]){
             case "A" OR "E" OR "I" OR"O" OR" U":
                 $totalPuntos+=1;
