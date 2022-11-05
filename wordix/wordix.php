@@ -356,11 +356,11 @@ function obtenerPuntajeWordix($nroIntento,$palabraIntento)  /* ****COMPLETAR****
     }
     for ($i=0;$i<=strlen($palabraIntento);$i++){
         switch($palabraIntento[$i]){
-            case "A","E","I","O","U":
+            case "A" OR "E" OR "I" OR"O" OR" U":
                 $totalPuntos+=1;
-            case "B","C","D","F","G","H","J","K","L","M":
+            case "B" OR "C" OR "D" OR "F" OR "G" OR "H" OR "J" OR "K" OR "L" OR "M":
                 $totalPuntos+=2;    
-            case "N","P","Q","R","S","T","V","W","X","Y","Z":
+            case "N" OR "P" OR "Q" OR "R" OR "S" OR "T" OR "V" OR "W" OR "X" OR "Y" OR "Z":
                 $totalPuntos+=3;
             default:
                 return 0;
