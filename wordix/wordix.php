@@ -28,6 +28,7 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 
 /**
  *  ****COMPLETAR*****
+ * Devuelve el numero ingresado si esta entre el valor minimo y el valor maximo.
  * @param int $min
  * @param int $max
  * @return int
@@ -116,6 +117,7 @@ function escribirSegunEstado($texto, $estado)
 
 /**
  * ****COMPLETAR*****
+ * Escribe un mensaje de bienvenida al usuario ingresado.
  * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
@@ -130,6 +132,7 @@ function escribirMensajeBienvenida($usuario)
 
 /**
  * ****COMPLETAR*****
+ * Devuelve true mientras la cadena de texto no tenga espacios y consista solo de letras.
  * @param string $cadena
  * @return boolean
  */
@@ -148,6 +151,7 @@ function esPalabra($cadena)
 
 /**
  *  ****COMPLETAR*****
+ * Devuelve la palabra ingresada por el usuario en mayusculas si es una palabra de 5 letras y tiene caracteres solo alfabeticos.
  * @return string
  */
 function leerPalabra5Letras()
