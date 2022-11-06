@@ -26,7 +26,7 @@ function cargarColeccionPalabras()
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
-        "HOMBRO", "PALMA", "PERRO", "TARRO", "TECHO"
+        "JAMON", "PALMA", "PERRO", "TARRO", "TECHO"
     ];
 
     return ($coleccionPalabras);
