@@ -8,7 +8,7 @@ include_once("wordix.php");
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* ... COMPLETAR ... */
 /*Baron Juan Diego - 3284 - TUDW - juandiegobaron19@gmail.com - JuanDiegoBaron*/
-/*Antinao, Nicolas. 4353. TUDW. nicoantinao1998@gmail.com. Nico13A*/
+/*Antinao, Nicolas - 4353 - TUDW - nicoantinao1998@gmail.com - Nico13A*/
 
 
 
@@ -34,6 +34,16 @@ function cargarColeccionPalabras()
 
 /* ... COMPLETAR ... */
 
+function solicitarJugador(){
+    echo "Ingrese el nombre de un jugador: ";
+    $nombre = trim(fgets(STDIN));
+    $nombre = strtolower($nombre);
+    while (!esPalabra($nombre)) {
+        echo "Ingrese el nombre de un jugador y solo utilice letras: ";
+        $nombre = strtolower(trim(fgets(STDIN)));
+    }
+    return $nombre;
+}
 
 
 /**************************************/
