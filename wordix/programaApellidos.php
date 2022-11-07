@@ -51,11 +51,12 @@ function solicitarJugador(){
 }
 
 /**
- * 
+ * @return int
  */
 function seleccionarOpcion() {
+    //int $numOpcion
     echo "Ingrese un numero de opcion: ";
-    $numOpcion = trim(fgets(STDIN));
+    $numOpcion = solicitarNumeroEntre(1, 8);
     switch ($numOpcion) {
         case 1:
             echo "Jugar al Wordix con una palabra elegida \n";
@@ -78,15 +79,13 @@ function seleccionarOpcion() {
         case 7:
             echo "Agregar una palabra de 5 letras a Wordix \n";
             break;
-        case 8:
-            echo "Salir \n";
-            break;
         default:
-            echo "Opcion invalida";
+            echo "Salir \n";
             break;
     }
     return $numOpcion . "\n";
 }
+
 
 
 /**************************************/
