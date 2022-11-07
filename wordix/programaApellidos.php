@@ -56,6 +56,15 @@ function solicitarJugador(){
  */
 function seleccionarOpcion() {
     //int $numOpcion
+    echo "-------------------------------------------------------------------";
+    echo "1) Jugar al Wordix con una palabra elegida \n";
+    echo "2) Jugar al Wordix con una palabra aleatoria \n";
+    echo "3) Mostrar una partida \n";
+    echo "4) Mostrar la primer partida ganadora \n";
+    echo "5) Mostrar resumen de Jugador \n";
+    echo "6) Mostrar listado de partidas ordenadas por jugador y por palabra \n";
+    echo "7) Agregar una palabra de 5 letras a Wordix \n";
+    echo "-------------------------------------------------------------------";
     echo "Ingrese un numero de opcion: ";
     $numOpcion = solicitarNumeroEntre(1, 8);
     switch ($numOpcion) {
@@ -78,7 +87,10 @@ function seleccionarOpcion() {
             echo "Mostrar listado de partidas ordenadas por jugador y por palabra \n";
             break;
         case 7:
-            echo "Agregar una palabra de 5 letras a Wordix \n";
+            // echo "Agregar una palabra de 5 letras a Wordix \n";
+            echo "Ingresa una nueva palabra: ";
+            $nuevaPalabra = trim(fgets(STDIN));
+            $coleccionPalabras = agregarPalabra(cargarColeccionPalabras(),$nuevaPalabra);
             break;
         default:
             echo "Salir \n";
@@ -106,8 +118,10 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
 //Declaración de variables:
 
 
+
 //Inicialización de variables:
 
+$coleccionPalabras = cargarColeccionPalabras();
 
 //Proceso:
 
