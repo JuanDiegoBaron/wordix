@@ -32,7 +32,16 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
-/* ... COMPLETAR ... */
+
+
+function jugarWordixConPalabraElegida($coleccionPalabras,){
+    $nombreJugador = solicitarJugador();
+    
+    $partida = jugarWordix("MELON", $nombreJugador);
+    //print_r($partida);
+    //imprimirResultado($partida);
+
+}
 
 /**
  * Devuelve el nombre del jugador ingresado por el usuario en minuscula si solo ingreso letras.
@@ -70,6 +79,7 @@ function seleccionarOpcion() {
     switch ($numOpcion) {
         case 1:
             echo "Jugar al Wordix con una palabra elegida \n";
+            
             break;
         case 2:
             echo "Jugar al Wordix con una palabra aleatoria \n";
@@ -88,9 +98,7 @@ function seleccionarOpcion() {
             break;
         case 7:
             // echo "Agregar una palabra de 5 letras a Wordix \n";
-            echo "Ingresa una nueva palabra: ";
-            $nuevaPalabra = trim(fgets(STDIN));
-            $coleccionPalabras = agregarPalabra(cargarColeccionPalabras(),$nuevaPalabra);
+            $coleccionPalabras = agregarPalabra(cargarColeccionPalabras());
             break;
         default:
             echo "Salir \n";
@@ -105,8 +113,9 @@ function seleccionarOpcion() {
  * @param string $nuevaPalabra 
  * @return array
  */
-function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
-    array_push($coleccionPalabras, $nuevaPalabra);
+function agregarPalabra($coleccionPalabras) {
+    $nuevaPalabra = leerPalabra5Letras();
+    array_push($coleccionPalabras);
     return $coleccionPalabras;
 }
 
