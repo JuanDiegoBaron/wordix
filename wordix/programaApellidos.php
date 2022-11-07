@@ -87,6 +87,16 @@ function seleccionarOpcion() {
     return $numOpcion . "\n";
 }
 
+/**
+ * Agrega una palabra a la coleccion ingresada.
+ * @param array $coleccionPalabras 
+ * @param string $nuevaPalabra 
+ * @return array
+ */
+function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
+    array_push($coleccionPalabras, $nuevaPalabra);
+    return $coleccionPalabras;
+}
 
 
 /**************************************/
