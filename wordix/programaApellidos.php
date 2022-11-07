@@ -6,9 +6,9 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ... COMPLETAR ... */
 /*Baron Juan Diego - 3284 - TUDW - juandiegobaron19@gmail.com - JuanDiegoBaron*/
 /*Antinao Nicolas - 4353 - TUDW - nicoantinao1998@gmail.com - Nico13A*/
+/*Matias Olate - 3255 - TUDW - olatemat15@gmail.com - MatiasOlate*/ 
 
 
 
@@ -32,14 +32,54 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
+function guardarPartida($coleccionPartidas,$partida){
+    $coleccionPartidas = array_push($partida);
+    return $coleccionPartidas;
+}
+
+/**
+ * Imprime el resultado de la partida
+ */
+function imprimirResultado($partida){
+    echo "Partida finalizada";
+    echo "-----------------------------";
+    echo "Palabra: ". $partida["palabraWorddix"];
+    echo "Jugador: ". $partida["jugador"];
+    echo "Intentos: ". $partida["intentos"];
+    echo "Puntaje: ". $partida["puntaje"];
+    echo "-----------------------------";
+}
 
 
-function jugarWordixConPalabraElegida($coleccionPalabras,){
+/** ----------  REVISAR --------------
+ * Juega una partida con una palabra elegida por el jugador
+ * 
+ */
+function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
     $nombreJugador = solicitarJugador();
+    // se necesita verificar si el jugador ya jugo una partida con la palabra
+    do{
+        echo "Ingresa un numero entre 0 y ".COUNT($coleccionPalabras)." :";
+        $numeroPalabra = solicitarNumeroEntre(0,COUNT($coleccionPalabras));
+        $palabra = $coleccionPalabras[$numeroPalabra];
+        for($i=0;$i<COUNT($coleccionPartidas);$i++){
+            if ($coleccionPartidas[$i]["nombre"]==$nombreJugador){
+                if($coleccionPartidas[$i]["palabraWordix"]==$palabra){
+                    echo "Ya has jugado con esa palabra.";
+                    $usada = TRUE;
+                } 
+                else{
+                    $usada = FALSE;
+                }   
+            } 
+        }
+        
+    } while($usada);
     
-    $partida = jugarWordix("MELON", $nombreJugador);
-    //print_r($partida);
-    //imprimirResultado($partida);
+    $partida = jugarWordix($palabra, $nombreJugador);
+    print_r($partida);
+    imprimirResultado($partida);
+    $coleccionPartidas = guardarPartida($coleccionPartidas,$partida);
 
 }
 
@@ -79,7 +119,7 @@ function seleccionarOpcion() {
     switch ($numOpcion) {
         case 1:
             echo "Jugar al Wordix con una palabra elegida \n";
-            
+            // jugarWordixConPalabraElegida();
             break;
         case 2:
             echo "Jugar al Wordix con una palabra aleatoria \n";
