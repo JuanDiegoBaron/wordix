@@ -51,6 +51,7 @@ function solicitarJugador(){
 }
 
 /**
+ * Muestra las opciones del menu en pantalla y devuelve el numero de opcion.
  * @return int
  */
 function seleccionarOpcion() {
