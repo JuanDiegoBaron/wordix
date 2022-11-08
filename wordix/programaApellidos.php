@@ -148,16 +148,42 @@ function seleccionarOpcion() {
 }
 
 
+
+/**
+ * Verifica si la palabra ya se encuentra en la coleccion.
+ * @param array $unaColeccion
+ * @param string $unaPalabra
+ * @return boolean
+ */
+function palabraRepetida($unaColeccion, $unaPalabra) {
+    //Boolean $valida;
+    if (in_array($unaPalabra, $unaColeccion)) {
+        $valida = false;
+    }
+    else {
+        $valida = true;
+    }
+    return $valida;
+}
+
+
 /**
  * Agrega una palabra a la coleccion ingresada.
- * @param array $coleccionPalabras 
- * @param string $nuevaPalabra 
+ * @param array $coleccionPalabras
+ * @param string $nuevaPalabra
  * @return array
  */
-function agregarPalabra($coleccionPalabras) {
-    array_push($coleccionPalabras, leerPalabra5Letras());
+function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
+    while (!palabraRepetida($coleccionPalabras, $nuevaPalabra)) {
+        echo "Esta palabra ya esta en la coleccion \n";
+        $nuevaPalabra = leerPalabra5Letras();
+    }
+    array_push($coleccionPalabras, $nuevaPalabra);
     return $coleccionPalabras;
 }
+
+
+
 
 /*
  * 
