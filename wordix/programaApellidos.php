@@ -40,7 +40,7 @@ function guardarPartida($coleccionPartidas,$partida){
 /**
  * Imprime el resultado de la partida
  */
-function imprimirResultado($partida){
+function imprimirResultadoPartida($partida){
     echo "Partida finalizada";
     echo "-----------------------------";
     echo "Palabra: ". $partida["palabraWorddix"];
@@ -78,7 +78,7 @@ function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
     
     $partida = jugarWordix($palabra, $nombreJugador);
     print_r($partida);
-    imprimirResultado($partida);
+    imprimirResultadoPartida($partida);
     $coleccionPartidas = guardarPartida($coleccionPartidas,$partida);
 
 }
@@ -159,7 +159,73 @@ function agregarPalabra($coleccionPalabras) {
     return $coleccionPalabras;
 }
 
+/*
+ * 
+ * 
+ * 
+*/
 
+function resumenJugador($coleccionPartidas){
+    $puntajeTotal=0;
+    $numeroPartidas=0;
+    $victorias=0;
+    $intento1=0;
+    $intento2=0;
+    $intento3=0;
+    $intento4=0;
+    $intento5=0;
+    $intento6=0;
+
+    echo "Ingresar nombre de jugador: ";
+    $nombreJugador = trim(fgets(STDIN));
+    for($i=0;$i<COUNT($coleccionPartidas);$i++){
+        if($coleccionPartidas[$i]["jugador"]==$nombreJugador){
+            
+            $numeroPartidas++;
+            $puntajeTotal+= $coleccionPartidas[$i]["puntaje"];
+            
+            if ($coleccionPartidas[$i]["intento"]<=6){
+                $victorias++;
+            }
+            
+            switch($coleccionPartidas[$i]["intento"]){
+                case 1: 
+                    $intento1++;
+                    break;
+                case 2: 
+                    $intento2++;
+                    break;
+                case 3: 
+                    $intento3++;
+                    break;
+                case 4: 
+                    $intento4++;
+                    break;
+                case 5: 
+                    $intento5++;
+                    break;
+                case 6: 
+                    $intento6++;
+                    break;            
+            }
+        
+        }
+    }
+    // $porcentajeVictorias = ($victorias*100)/$partidas;
+    // Se crea un arreglo $resumenJugador con todos los datos 
+    $resumenJugador = ["nombreJugador"=>$nombreJugador,
+                        "partidas"=>$numeroPartidas, 
+                        "puntaje"=>$puntajeTotal,
+                        "victorias"=>$victorias,
+                        "intento1"=>$intento1,
+                        "intento2"=>$intento2,
+                        "intento3"=>$intento3,
+                        "intento4"=>$intento4,
+                        "intento5"=>$intento5,
+                        "intento6"=>$intento6];
+
+    return $resumenJugador;                    
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -172,6 +238,7 @@ function agregarPalabra($coleccionPalabras) {
 //Inicialización de variables:
 
 $coleccionPalabras = cargarColeccionPalabras();
+$coleccionPartidas=[];
 
 //Proceso:
 
