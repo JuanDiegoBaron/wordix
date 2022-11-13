@@ -92,7 +92,7 @@ function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
         $numeroPalabra = solicitarNumeroEntre(0,COUNT($coleccionPalabras));
         $palabra = $coleccionPalabras[$numeroPalabra];
         for($i=0;$i<COUNT($coleccionPartidas);$i++){
-            if ($coleccionPartidas[$i]["nombre"]==$nombreJugador){
+            if ($coleccionPartidas[$i]["jugador"]==$nombreJugador){
                 if($coleccionPartidas[$i]["palabraWordix"]==$palabra){
                     echo "Ya has jugado con esa palabra.";
                     $usada = TRUE;
@@ -112,7 +112,38 @@ function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
 
 }
 
+/** -
+ * Juega una partida de wordix con una palabra aleatoria (OPCION 2)
+ * @param array $coleccionPartidas
+ * @param array $coleccionPalabras
+ */
+function jugarWordixConPalabraAleatoria($coleccionPalabras,$coleccionPartidas){
+    // String $nombreJugador
+    // Int $i
+    // Boolean $usada
+    $nombreJugador = solicitarJugador();
+    $i=0;
+    do{
+        $palabra=$coleccionPalabras[$i];
+        for ($j=0;$j<COUNT($coleccionPartidas);$j++){
+            if ($coleccionPartidas[$j]["jugador"==$nombreJugador]){
+                if($coleccionPalabras[$j]["palabraWordix"]==$palabra){
+                    $usada = TRUE;
+                }
+                else{
+                    $usada = FALSE;
+                }
+            }
+        }
+        $i++;
+    }while($usada);
 
+    $partida = jugarWordix($palabra, $nombreJugador);
+    print_r($partida);
+    imprimirResultadoPartida($partida);
+    $coleccionPartidas = guardarPartida($coleccionPartidas,$partida);
+    
+}
 
 /**
  * Devuelve el nombre del jugador ingresado por el usuario en minuscula si solo ingreso letras.
