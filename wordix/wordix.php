@@ -27,7 +27,7 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ *  ( PUNTO 5)
  * Devuelve el numero ingresado si esta entre el valor minimo y el valor maximo.
  * @param int $min
  * @param int $max
@@ -150,7 +150,7 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ *  ( PUNTO 4)
  * Devuelve la palabra ingresada por el usuario en mayusculas si es una palabra de 5 letras y tiene caracteres solo alfabeticos.
  *  
  * @return string
