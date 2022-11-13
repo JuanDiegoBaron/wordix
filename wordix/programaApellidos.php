@@ -65,7 +65,7 @@ function guardarPartida($coleccionPartidas,$partida){
 }
 
 /**
- * Imprime el resultado de la partida
+ * Imprime el resultado de la partida jugada
  * @param $partida
  */
 function imprimirResultadoPartida($partida){
@@ -80,7 +80,7 @@ function imprimirResultadoPartida($partida){
 
 
 /** ----------  REVISAR --------------
- * Juega una partida con una palabra elegida por el jugador (OPCION 1)
+ * Juega una partida de wordix con una palabra elegida por el jugador (OPCION 1)
  * @param array $coleccionPartidas
  * @param array $coleccionPalabras
  */
@@ -146,6 +146,27 @@ function jugarWordixConPalabraAleatoria($coleccionPalabras,$coleccionPartidas){
 }
 
 /**
+ * muestra una partida segun un numero ingresado (OPCION 3)
+ * @param $coleccionPartidas
+ */
+function mostrarPartida($coleccionPartidas){
+    // Int $numeroPartida
+    $numeroPartida = solicitarNumeroEntre(0,COUNT($coleccionPartidas));
+    $partida = $coleccionPartidas[$numeroPartida];
+    echo "***********************";
+    echo "Partida Wordix ". $numeroPartida. ": palabra ". $partida["palabraWordix"];
+    echo "jugador: ". $partida["jugador"];
+    echo "puntaje: ". $partida["puntaje"]. " puntos";
+    if ($partida["puntaje"]==6){
+        echo "Intento: No adivino la palabra";
+    }
+    else {
+        echo "Intento: ". $partida["puntaje"]; 
+    }
+}   
+
+
+/**
  * Devuelve el nombre del jugador ingresado por el usuario en minuscula si solo ingreso letras.
  * @return string
  */
@@ -180,11 +201,12 @@ function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
     $numOpcion = solicitarNumeroEntre(1, 8);
     switch ($numOpcion) {
         case 1:
-            echo "Jugar al Wordix con una palabra elegida \n";
+            //echo "Jugar al Wordix con una palabra elegida \n";
             jugarWordixConPalabraElegida($coleccionPalabras,$coleccionPartidas);
             break;
         case 2:
-            echo "Jugar al Wordix con una palabra aleatoria \n";
+            //echo "Jugar al Wordix con una palabra aleatoria \n";
+            jugarWordixConPalabraAleatoria($coleccionPalabras,$coleccionPartidas);
             break;
         case 3:
             echo "Mostrar una partida \n";
@@ -247,10 +269,10 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
 
 
 
-/*
- * 
- * 
- * 
+/**
+ * devuelve un array con el resumen de un jugador
+ * @param array $coleccionPartidas
+ * @return array
 */
 function resumenJugador($coleccionPartidas){
     $puntajeTotal=0;
