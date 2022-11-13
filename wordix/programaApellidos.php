@@ -53,6 +53,12 @@ function cargarPartidas(){
     return $coleccionPartidas;
 }
 
+/**
+ * guarda una partida en la coleccion de partidas
+ * @param array $coleccionPartidas
+ * @param array $partida
+ * @return array
+ */
 function guardarPartida($coleccionPartidas,$partida){
     $coleccionPartidas = array_push($partida);
     return $coleccionPartidas;
@@ -60,6 +66,7 @@ function guardarPartida($coleccionPartidas,$partida){
 
 /**
  * Imprime el resultado de la partida
+ * @param $partida
  */
 function imprimirResultadoPartida($partida){
     echo "Partida finalizada";
@@ -73,12 +80,13 @@ function imprimirResultadoPartida($partida){
 
 
 /** ----------  REVISAR --------------
- * Juega una partida con una palabra elegida por el jugador
- * 
+ * Juega una partida con una palabra elegida por el jugador (OPCION 1)
+ * @param array $coleccionPartidas
+ * @param array $coleccionPalabras
  */
 function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
+    // String $nombreJugador
     $nombreJugador = solicitarJugador();
-    // se necesita verificar si el jugador ya jugo una partida con la palabra
     do{
         echo "Ingresa un numero entre 0 y ".COUNT($coleccionPalabras)." :";
         $numeroPalabra = solicitarNumeroEntre(0,COUNT($coleccionPalabras));
@@ -104,6 +112,8 @@ function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
 
 }
 
+
+
 /**
  * Devuelve el nombre del jugador ingresado por el usuario en minuscula si solo ingreso letras.
  * @return string
@@ -124,7 +134,7 @@ function solicitarJugador(){
  * Muestra las opciones del menu en pantalla y devuelve el numero de opcion.
  * @return int
  */
-function seleccionarOpcion($coleccionPalabras) {
+function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
     //int $numOpcion
     echo "-------------------------------------------------------------------";
     echo "1) Jugar al Wordix con una palabra elegida \n";
@@ -140,7 +150,7 @@ function seleccionarOpcion($coleccionPalabras) {
     switch ($numOpcion) {
         case 1:
             echo "Jugar al Wordix con una palabra elegida \n";
-            // jugarWordixConPalabraElegida();
+            jugarWordixConPalabraElegida($coleccionPalabras,$coleccionPartidas);
             break;
         case 2:
             echo "Jugar al Wordix con una palabra aleatoria \n";
