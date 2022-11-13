@@ -32,6 +32,27 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
+/** 
+* Inicializa la coleccion de partidas
+* @return array
+*/
+function cargarPartidas(){
+
+    $coleccionPartidas=[
+        ["palabraWordix"=>"RASGO","jugador"=>"Pedro","intentos"=>6,"puntaje"=>0],
+        ["palabraWordix"=>"CASAS","jugador"=>"Juan","intentos"=>4,"puntaje"=>13],
+        ["palabraWordix"=>"GATOS","jugador"=>"Miguel","intentos"=>2,"puntaje"=>15],
+        ["palabraWordix"=>"FUEGO","jugador"=>"Nicolas","intentos"=>3,"puntaje"=>11],
+        ["palabraWordix"=>"RASGO","jugador"=>"Nicolas","intentos"=>5,"puntaje"=>12],
+        ["palabraWordix"=>"QUESO","jugador"=>"Juan","intentos"=>1,"puntaje"=>15],
+        ["palabraWordix"=>"MUJER","jugador"=>"Marta","intentos"=>1,"puntaje"=>16],
+        ["palabraWordix"=>"YUYOS","jugador"=>"Fernanda","intentos"=>6,"puntaje"=>0],
+        ["palabraWordix"=>"JAMON","jugador"=>"Ramon","intentos"=>5,"puntaje"=>11],
+        ["palabraWordix"=>"PALMA","jugador"=>"Juan","intentos"=>3,"puntaje"=>13],
+    ];
+    return $coleccionPartidas;
+}
+
 function guardarPartida($coleccionPartidas,$partida){
     $coleccionPartidas = array_push($partida);
     return $coleccionPartidas;
@@ -103,7 +124,7 @@ function solicitarJugador(){
  * Muestra las opciones del menu en pantalla y devuelve el numero de opcion.
  * @return int
  */
-function seleccionarOpcion() {
+function seleccionarOpcion($coleccionPalabras) {
     //int $numOpcion
     echo "-------------------------------------------------------------------";
     echo "1) Jugar al Wordix con una palabra elegida \n";
@@ -138,7 +159,7 @@ function seleccionarOpcion() {
             break;
         case 7:
             // echo "Agregar una palabra de 5 letras a Wordix \n";
-            $coleccionPalabras = agregarPalabra(cargarColeccionPalabras());
+            $coleccionPalabras = agregarPalabra($coleccionPalabras,leerPalabra5Letras());
             break;
         default:
             echo "Salir \n";
@@ -190,7 +211,6 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
  * 
  * 
 */
-
 function resumenJugador($coleccionPartidas){
     $puntajeTotal=0;
     $numeroPartidas=0;
@@ -264,7 +284,7 @@ function resumenJugador($coleccionPartidas){
 //Inicialización de variables:
 
 $coleccionPalabras = cargarColeccionPalabras();
-$coleccionPartidas=[];
+$coleccionPartidas= cargarPartidas();
 
 //Proceso:
 
