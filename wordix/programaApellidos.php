@@ -175,8 +175,21 @@ function mostrarPrimerVictoria($coleccionPartidas){
     // String $jugador
     // Array $partida
     $jugador = solicitarJugador();
-    // $partida=$coleccionPartidas[];  
-    // imprimirResultadoPartida($partida);
+    $partida=$coleccionPartidas[indicePrimerPartidaGanada($coleccionPartidas,$jugador)];  
+    imprimirResultadoPartida($partida);
+}
+
+function indicePrimerPartidaGanada($coleccionPartidas,$nombreJugador){
+    for($i=0; $i<COUNT($coleccionPartidas);$i++){
+        if($coleccionPartidas[$i]["jugador"]==$nombreJugador){
+            if($coleccionPartidas[$i]["puntaje"]>0){
+                return $i;
+            }
+            else{
+                return -1;
+            }
+        }
+    }
 }
 
 
@@ -227,11 +240,12 @@ function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
             mostrarPartida($coleccionPartidas);
             break;
         case 4:
-            echo "Mostrar la primer partida ganadora \n";
-            mostrarResumenJugador(resumenJugador($coleccionPartidas));
+            //echo "Mostrar la primer partida ganadora \n";
+            mostrarPrimerVictoria($coleccionPartidas);
             break;
         case 5:
-            echo "Mostrar resumen de Jugador \n";
+            //echo "Mostrar resumen de Jugador \n";
+            mostrarResumenJugador(resumenJugador($coleccionPartidas));
             break;
         case 6:
             echo "Mostrar listado de partidas ordenadas por jugador y por palabra \n";
@@ -283,8 +297,8 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
 }
 
 /**
- * muestra el resumen de un jugador (Opcion 5)
- * @param array $resumenJugador
+ * muestra el resumen de un jugador
+ * @param array
  */
 function mostrarResumenJugador($resumenJugador){
     $porcentajeVictorias= ($resumenJugador["victorias"]*100)/$resumenJugador["partidas"];
