@@ -215,7 +215,7 @@ function solicitarJugador(){
  */
 function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
     //int $numOpcion
-    echo "-------------------------------------------------------------------";
+    echo "------------------------------------------------------------------- \n";
     echo "1) Jugar al Wordix con una palabra elegida \n";
     echo "2) Jugar al Wordix con una palabra aleatoria \n";
     echo "3) Mostrar una partida \n";
@@ -223,7 +223,7 @@ function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
     echo "5) Mostrar resumen de Jugador \n";
     echo "6) Mostrar listado de partidas ordenadas por jugador y por palabra \n";
     echo "7) Agregar una palabra de 5 letras a Wordix \n";
-    echo "-------------------------------------------------------------------";
+    echo "------------------------------------------------------------------- \n";
     echo "Ingrese un numero de opcion: ";
     $numOpcion = solicitarNumeroEntre(1, 8);
     switch ($numOpcion) {
@@ -385,6 +385,31 @@ function resumenJugador($coleccionPartidas){
 
     return $resumenJugador;                    
 }
+
+/**
+ * Ordena una coleccion en base al nombre de los jugadores y las palabras.
+ * @param array $coleccionPartidas
+ */
+function partidaOrdenada($coleccionPartidas){
+    //INT $orden, ARRAY $a, $b
+    function comparacionJugador($a, $b) {
+            if ($a["jugador"] == $b["jugador"]) {
+                $orden = 0;
+            }
+            elseif($a["jugador"] < $b["jugador"]) {
+                $orden = -1;
+            }
+            else {
+                $orden = 1;
+            }
+            return $orden;
+    }
+    array_multisort($coleccionPartidas, SORT_ASC);
+    uasort($coleccionPartidas, "comparacionJugador");
+    print_r($coleccionPartidas);
+}
+
+
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
