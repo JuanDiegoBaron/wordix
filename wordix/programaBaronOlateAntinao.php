@@ -60,7 +60,7 @@ function cargarPartidas(){
  * @return array
  */
 function guardarPartida($coleccionPartidas,$partida){
-    $coleccionPartidas = array_push($partida);
+    $coleccionPartidas = array_push($coleccionPartidas, $partida);
     return $coleccionPartidas;
 }
 

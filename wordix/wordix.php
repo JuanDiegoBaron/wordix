@@ -331,6 +331,30 @@ function esIntentoGanado($estructuraPalabraIntento)
     return $ganado;
 }
 
+
+/**
+ * Devuelve una cantidad de puntos dependiendo de si la letra es vocal o consonante.
+ * @param string $palabraIntento
+ * @return int
+ */
+function sumaSegunLetra($palabraIntento) {
+    //INT $puntos, $i
+    $puntos = 0;
+    for ($i=0; $i<strlen($palabraIntento); $i++) {
+        if ($palabraIntento[$i] == "A" || $palabraIntento[$i]== "E" || $palabraIntento[$i] == "I" ||$palabraIntento[$i] == "O" || $palabraIntento[$i] == "U") {
+            $puntos+=1;
+        }
+        elseif ($palabraIntento[$i] == "B" || $palabraIntento[$i] == "C" || $palabraIntento[$i] == "D" ||$palabraIntento[$i] == "F" || $palabraIntento[$i] == "G" || $palabraIntento[$i] == "H" || $palabraIntento[$i] == "J" || $palabraIntento[$i] == "K" || $palabraIntento[$i] == "L" || $palabraIntento[$i] == "M") {
+            $puntos+=2;
+        }
+        else{
+            $puntos+=3;
+        }
+    }
+    return $puntos;
+}
+
+
 /**
  * Devuelve el puntaje obtenido en la partida.
  * @param $nroIntento INT
@@ -340,45 +364,42 @@ function esIntentoGanado($estructuraPalabraIntento)
 function obtenerPuntajeWordix($nroIntento,$palabraIntento)  /* ****COMPLETAR***** parámetros formales necesarios */
 {
     // INT $totalPuntos, $i
-    $totalPuntos=0;
+    $sumaDeLetra = sumaSegunLetra($palabraIntento);
+    $puntaje=0;
     switch($nroIntento){
         case 1:
-            $totalPuntos+=6;
+            $puntaje+=6;
             break; 
         case 2:
-            $totalPuntos+=5;
+            $puntaje+=5;
             break;
         case 3:
-            $totalPuntos+=4;
+            $puntaje+=4;
             break;            
         case 4:
-            $totalPuntos+=3;
+            $puntaje+=3;
             break;
         case 5:
-            $totalPuntos+=2;
+            $puntaje+=2;
             break;
         case 6:
-            $totalPuntos+=1;
+            $puntaje+=1;
             break;
         default:
-            return 0;        
+            $puntaje;        
     }
-    for ($i=0;$i<strlen($palabraIntento);$i++){
-        switch($palabraIntento[$i]){
-            case "A" OR "E" OR "I" OR"O" OR" U":
-                $totalPuntos+=1;
-            case "B" OR "C" OR "D" OR "F" OR "G" OR "H" OR "J" OR "K" OR "L" OR "M":
-                $totalPuntos+=2;    
-            case "N" OR "P" OR "Q" OR "R" OR "S" OR "T" OR "V" OR "W" OR "X" OR "Y" OR "Z":
-                $totalPuntos+=3;
-            default:
-                return 0;
-        }
+    if ($puntaje>0) {
+        $totalPuntos = $sumaDeLetra + $puntaje;
+    }
+    else {
+        $totalPuntos = 0;
     }
     return $totalPuntos;
     /* ****COMPLETAR***** cuerpo de la función*/
     // return 0;
 }
+
+
 
 /**
  * Dada una palabra para adivinar, juega una partida de wordix intentando que el usuario adivine la palabra.
