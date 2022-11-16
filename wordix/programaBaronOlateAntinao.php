@@ -189,7 +189,6 @@ function mostrarResumenJugador($resumenJugador){
     echo "*************************************\n";
     echo "Jugador: ". $resumenJugador["nombreJugador"]."\n";
     echo "Partidas: ". $resumenJugador["partidas"]."\n";
-    echo "Partidas: ". $resumenJugador["partidas"]."\n";
     echo "Puntaje Total: ". $resumenJugador["puntaje"]."\n";
     echo "Victorias: ". $resumenJugador["victorias"]."\n";
     echo "Porcentaje Victorias: ". $porcentajeVictorias."\n";
