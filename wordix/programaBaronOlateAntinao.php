@@ -249,12 +249,13 @@ function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
             break;
         case 6:
             //echo "Mostrar listado de partidas ordenadas por jugador y por palabra \n";
-            MostrarPartidaOrdenada($coleccionPartidas);
+            mostrarPartidaOrdenada($coleccionPartidas);
             return 6;
             break;
         case 7:
             // echo "Agregar una palabra de 5 letras a Wordix \n";
             $coleccionPalabras = agregarPalabra($coleccionPalabras,leerPalabra5Letras());
+            //print_r($coleccionPalabras);
             return 7;
             break;
         default:
@@ -356,11 +357,11 @@ function resumenJugador($coleccionPartidas){
             $numeroPartidas++;
             $puntajeTotal+= $coleccionPartidas[$i]["puntaje"];
             
-            if ($coleccionPartidas[$i]["intento"]<=6){
+            if ($coleccionPartidas[$i]["intentos"]<=6){
                 $victorias++;
             }
             
-            switch($coleccionPartidas[$i]["intento"]){
+            switch($coleccionPartidas[$i]["intentos"]){
                 case 1: 
                     $intento1++;
                     break;
@@ -403,7 +404,7 @@ function resumenJugador($coleccionPartidas){
  * Ordena una coleccion en base al nombre de los jugadores y las palabras.
  * @param array $coleccionPartidas
  */
-function MostrarPartidaOrdenada($coleccionPartidas){
+function mostrarPartidaOrdenada($coleccionPartidas){
     //INT $orden, ARRAY $a, $b
     function comparacionJugador($a, $b) {
             if ($a["jugador"] == $b["jugador"]) {
