@@ -54,7 +54,7 @@ function cargarPartidas(){
 }
 
 /**
- * guarda una partida en la coleccion de partidas
+ * Guarda una partida en la coleccion de partidas.
  * @param array $coleccionPartidas
  * @param array $partida
  * @return array
@@ -97,6 +97,7 @@ function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
                 } 
                 else{
                     $usada = FALSE;
+                    break;
                 }   
             } 
         }
@@ -430,7 +431,7 @@ function mostrarPartidaOrdenada($coleccionPartidas){
 
 //Declaración de variables:
 
-
+// array $coleccionPalabras, $coleccionPartidas
 
 //Inicialización de variables:
 
