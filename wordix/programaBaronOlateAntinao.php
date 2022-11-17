@@ -166,16 +166,49 @@ function mostrarPartida($coleccionPartidas){
 
 
 /**
- * muestra la primer partida que gano un jugador (OPCION 4)
+ * Devuelve verdadero si el jugador ya se encuentra en la coleccion.
+ * @param string $nombreJugador
+ * @param array $coleccionPartidas
+ * @return boolean
+ */
+function jugadorExiste($nombreJugador, $coleccionPartidas) {
+    //boolean $existe
+    $existe = true;
+    foreach ($coleccionPartidas as $value) {
+        if ($value["jugador"]==$nombreJugador) {
+            $existe = true;
+            break;
+        }
+        else {
+            $existe = false;
+        }
+    }
+    return $existe;
+}
+
+
+/**
+ * Muestra la primer partida que gano un jugador (OPCION 4)
  * @param $coleccionPartidas
  */
 function mostrarPrimerVictoria($coleccionPartidas){
     // String $jugador
     // Array $partida
     $jugador = solicitarJugador();
-    $partida=$coleccionPartidas[indicePrimerPartidaGanada($coleccionPartidas,$jugador)];  
-    imprimirResultadoPartida($partida);
+    if (jugadorExiste($jugador, $coleccionPartidas)) {
+        if (indicePrimerPartidaGanada($coleccionPartidas,$jugador)==-1) {
+            echo "El jugador no gano ninguna partida\n";
+        }
+        else {
+            $partida=$coleccionPartidas[indicePrimerPartidaGanada($coleccionPartidas,$jugador)];
+            imprimirResultadoPartida($partida);
+        }
+    }
+    else {
+        echo "No existe jugador \n";
+    }
 }
+
 
 /**
  * muestra el resumen de un jugador (Opcion 5)
