@@ -270,11 +270,15 @@ function indicePrimerPartidaGanada($coleccionPartidas,$nombreJugador){
     for($i=0; $i<COUNT($coleccionPartidas);$i++){
         if($coleccionPartidas[$i]["jugador"]==$nombreJugador){
             if($coleccionPartidas[$i]["puntaje"]>0){
-                return $i;
+                $indice = $i;
+                break;
+            }
+            else {
+                $indice = -1;
             }
         }
     }
-    return -1;
+    return $indice;
 }
 
 /**
