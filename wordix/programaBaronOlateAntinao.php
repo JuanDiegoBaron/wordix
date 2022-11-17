@@ -134,7 +134,7 @@ function jugarWordixConPalabraAleatoria($coleccionPartidas,$coleccionPalabras){
     //print_r($partida);
     echo "Partida finalizada!";
     imprimirResultadoPartida($partida);
-    $coleccionPartidas = guardarPartida($coleccionPartidas,$partida);
+    array_push($coleccionPartidas,$partida);
     
 }
 
@@ -144,20 +144,24 @@ function jugarWordixConPalabraAleatoria($coleccionPartidas,$coleccionPalabras){
  */
 function mostrarPartida($coleccionPartidas){
     // Int $numeroPartida
+    echo "Ingresa un numero entre 0 y ".count($coleccionPartidas)." : ";
     $numeroPartida = solicitarNumeroEntre(0,COUNT($coleccionPartidas));
     $partida = $coleccionPartidas[$numeroPartida];
     echo "***********************\n";
     echo "Partida Wordix ". $numeroPartida. ": palabra ". $partida["palabraWordix"]."\n";
     echo "jugador: ". $partida["jugador"]."\n";
     echo "puntaje: ". $partida["puntaje"]. " puntos\n";
-    if ($partida["puntaje"]==6){
-        echo "Intento: No adivino la palabra\n";
+    if ($partida["intentos"]==6){
+        echo "Intentos: " . $partida["intentos"]."\n";
+        echo "No adivino la palabra\n";
     }
     else {
-        echo "Intento: ". $partida["puntaje"]."\n"; 
+        echo "Intentos: ". $partida["intentos"]."\n"; 
     }
     echo "***********************";
-}   
+}  
+
+
 
 /**
  * muestra la primer partida que gano un jugador (OPCION 4)
