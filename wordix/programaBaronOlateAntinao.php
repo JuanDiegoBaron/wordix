@@ -160,7 +160,7 @@ function mostrarPartida($coleccionPartidas){
     else {
         echo "Intentos: ". $partida["intentos"]."\n"; 
     }
-    echo "***********************";
+    echo "***********************\n";
 }  
 
 
@@ -217,14 +217,18 @@ function mostrarPrimerVictoria($coleccionPartidas){
 function mostrarResumenJugador($resumenJugador){
 
     // Float $porcentajeVictorias
-
-    $porcentajeVictorias= ($resumenJugador["victorias"]*100)/$resumenJugador["partidas"];
+    if($resumenJugador["partidas"]!=0){
+        $porcentajeVictorias= ($resumenJugador["victorias"]*100)/$resumenJugador["partidas"];
+    }
+    else{
+        $porcentajeVictorias=0;
+    }
     echo "*************************************\n";
     echo "Jugador: ". $resumenJugador["nombreJugador"]."\n";
     echo "Partidas: ". $resumenJugador["partidas"]."\n";
     echo "Puntaje Total: ". $resumenJugador["puntaje"]."\n";
     echo "Victorias: ". $resumenJugador["victorias"]."\n";
-    echo "Porcentaje Victorias: ". $porcentajeVictorias."\n";
+    echo "Porcentaje Victorias: ". $porcentajeVictorias."%\n";
     echo "Adivinadas\n";
     echo "      Intento 1: ". $resumenJugador["intento1"]."\n";
     echo "      Intento 2: ". $resumenJugador["intento2"]."\n";
@@ -438,28 +442,30 @@ function resumenJugador($coleccionPartidas){
             $numeroPartidas++;
             $puntajeTotal+= $coleccionPartidas[$i]["puntaje"];
             
-            if ($coleccionPartidas[$i]["intentos"]<=6){
-                $victorias++;
-            }
-            
             switch($coleccionPartidas[$i]["intentos"]){
                 case 1: 
                     $intento1++;
+                    $victorias++;
                     break;
                 case 2: 
                     $intento2++;
+                    $victorias++;
                     break;
                 case 3: 
                     $intento3++;
+                    $victorias++;
                     break;
                 case 4: 
                     $intento4++;
+                    $victorias++;
                     break;
                 case 5: 
                     $intento5++;
+                    $victorias++;
                     break;
                 case 6: 
                     $intento6++;
+                    $victorias++;
                     break;            
             }
         
