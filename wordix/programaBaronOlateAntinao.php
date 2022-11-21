@@ -218,12 +218,7 @@ function mostrarResumenJugador($resumenJugador){
 
     // Float $porcentajeVictorias
 
-    if ($resumenJugador["puntaje"]>0) {
-        $porcentajeVictorias= ($resumenJugador["victorias"]*100)/$resumenJugador["partidas"];
-    }
-    else {
-        $porcentajeVictorias=0;
-    }
+    $porcentajeVictorias= ($resumenJugador["victorias"]*100)/$resumenJugador["partidas"];
     echo "*************************************\n";
     echo "Jugador: ". $resumenJugador["nombreJugador"]."\n";
     echo "Partidas: ". $resumenJugador["partidas"]."\n";
@@ -296,7 +291,6 @@ function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
                 break;
             case 6:
                 //echo "Mostrar listado de partidas ordenadas por jugador y por palabra \n";
-
                 mostrarPartidaOrdenada($coleccionPartidas);
                 break;
             case 7:
@@ -444,7 +438,7 @@ function resumenJugador($coleccionPartidas){
             $numeroPartidas++;
             $puntajeTotal+= $coleccionPartidas[$i]["puntaje"];
             
-            if ($coleccionPartidas[$i]["intentos"]<=6 && $coleccionPartidas[$i]["puntaje"]<>0){
+            if ($coleccionPartidas[$i]["intentos"]<=6){
                 $victorias++;
             }
             
