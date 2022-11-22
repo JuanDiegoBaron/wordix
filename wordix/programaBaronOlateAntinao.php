@@ -79,10 +79,11 @@ function imprimirResultadoPartida($partida){
  * Juega una partida de wordix con una palabra elegida por el jugador (OPCION 1)
  * @param array $coleccionPartidas
  * @param array $coleccionPalabras
+ * @return array
  */
 function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
     
-    // String $nombreJugador, palabra
+    // String $nombreJugador, $palabra
     // Int $numeroPalabra
     // boolean $usada
     // array $partida
@@ -108,10 +109,11 @@ function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
 
 }
 
-/** -
+/** 
  * Juega una partida de wordix con una palabra aleatoria (OPCION 2)
  * @param array $coleccionPartidas
  * @param array $coleccionPalabras
+ * @return array
  */
 function jugarWordixConPalabraAleatoria($coleccionPartidas,$coleccionPalabras){
     
@@ -212,7 +214,7 @@ function mostrarPrimerVictoria($coleccionPartidas){
 
 /**
  * muestra el resumen de un jugador (Opcion 5)
- * @param array
+ * @param array $resumenJugador
  */
 function mostrarResumenJugador($resumenJugador){
 
@@ -243,7 +245,6 @@ function mostrarResumenJugador($resumenJugador){
  * Muestra las opciones del menu en pantalla y devuelve el numero de opcion. (Punto 3)
  * @param array $coleccionPalabras
  * @param array $coleccionPartidas
- * @return int
  */
 function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
     
@@ -318,7 +319,7 @@ function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
  */
 function indicePrimerPartidaGanada($coleccionPartidas,$nombreJugador){
     
-    // Int $indice
+    // Int $indice, $i
     
     for($i=0; $i<COUNT($coleccionPartidas);$i++){
         if($coleccionPartidas[$i]["jugador"]==$nombreJugador){
@@ -441,31 +442,28 @@ function resumenJugador($coleccionPartidas){
             
             $numeroPartidas++;
             $puntajeTotal+= $coleccionPartidas[$i]["puntaje"];
+            if ($coleccionPartidas[$i]["intentos"]<=6 && $coleccionPartidas[$i]["puntaje"]<>0){
+                $victorias++;
+            }
             
             switch($coleccionPartidas[$i]["intentos"]){
                 case 1: 
                     $intento1++;
-                    $victorias++;
                     break;
                 case 2: 
                     $intento2++;
-                    $victorias++;
                     break;
                 case 3: 
                     $intento3++;
-                    $victorias++;
                     break;
                 case 4: 
                     $intento4++;
-                    $victorias++;
                     break;
                 case 5: 
                     $intento5++;
-                    $victorias++;
                     break;
                 case 6: 
                     $intento6++;
-                    $victorias++;
                     break;            
             }
         
@@ -488,30 +486,33 @@ function resumenJugador($coleccionPartidas){
 }
 
 /**
- * Ordena una coleccion en base al nombre de los jugadores y las palabras.
+ * Ordena una coleccion en base al nombre de los jugadores y las palabras a traves de la funcion de comparacion.
  * @param array $coleccionPartidas
  */
 function mostrarPartidaOrdenada($coleccionPartidas){
-    //INT $orden 
-    //ARRAY $a, $b
-    function comparacionJugador($a, $b) {
-            if ($a["jugador"] == $b["jugador"]) {
-                $orden = 0;
-            }
-            elseif($a["jugador"] < $b["jugador"]) {
-                $orden = -1;
-            }
-            else {
-                $orden = 1;
-            }
-            return $orden;
-    }
-    array_multisort($coleccionPartidas, SORT_ASC);
     uasort($coleccionPartidas, "comparacionJugador");
     print_r($coleccionPartidas);
 }
 
-
+/**
+ * Compara los elementos del arreglo.
+ * @param array $unaPartida
+ * @param array $otraPartida
+ * @return int
+ */
+function comparacionJugador($unaPartida, $otraPartida) {
+    //Int $orden
+    if ($unaPartida["jugador"] == $otraPartida["jugador"]) {
+        $orden = 0;
+    }
+    elseif($unaPartida["jugador"] < $otraPartida["jugador"]) {
+        $orden = -1;
+    }
+    else {
+        $orden = 1;
+    }
+    return $orden;
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
