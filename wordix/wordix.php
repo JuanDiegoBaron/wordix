@@ -363,7 +363,7 @@ function sumaSegunLetra($palabraIntento) {
  */
 function obtenerPuntajeWordix($nroIntento,$palabraIntento)  /* ****COMPLETAR***** parámetros formales necesarios */
 {
-    // INT $totalPuntos, $i
+    // INT $totalPuntos, $sumaDeLetra, $puntaje
     $sumaDeLetra = sumaSegunLetra($palabraIntento);
     $puntaje=0;
     switch($nroIntento){

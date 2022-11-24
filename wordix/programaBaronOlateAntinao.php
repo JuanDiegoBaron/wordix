@@ -77,10 +77,11 @@ function imprimirResultadoPartida($partida){
  * Juega una partida de wordix con una palabra elegida por el jugador (OPCION 1)
  * @param array $coleccionPartidas
  * @param array $coleccionPalabras
+ * @return array
  */
 function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
     
-    // String $nombreJugador, palabra
+    // String $nombreJugador, $palabra
     // Int $numeroPalabra
     // boolean $usada
     // array $partida
@@ -106,10 +107,11 @@ function jugarWordixConPalabraElegida($coleccionPartidas,$coleccionPalabras){
 
 }
 
-/**
+/** 
  * Juega una partida de wordix con una palabra aleatoria (OPCION 2)
  * @param array $coleccionPartidas
  * @param array $coleccionPalabras
+ * @return array
  */
 function jugarWordixConPalabraAleatoria($coleccionPartidas,$coleccionPalabras){ 
     // String $nombreJugador, $palabra
@@ -157,8 +159,30 @@ function mostrarPartida($coleccionPartidas){
     else {
         echo "Intentos: ". $partida["intentos"]."\n"; 
     }
-    echo "***********************";
+    echo "***********************\n";
 }  
+
+/**
+ * Devuelve verdadero si el jugador ya se encuentra en la coleccion.
+ * @param string $nombreJugador
+ * @param array $coleccionPartidas
+ * @return boolean
+ */
+function jugadorExiste($nombreJugador, $coleccionPartidas) {
+    //boolean $existe
+    $existe = true;
+    foreach ($coleccionPartidas as $value) {
+        if ($value["jugador"]==$nombreJugador) {
+            $existe = true;
+            break;
+        }
+        else {
+            $existe = false;
+        }
+    }
+    return $existe;
+}
+
 
 /**
  * Muestra la primer partida que gano un jugador (OPCION 4)
@@ -169,24 +193,39 @@ function mostrarPrimerVictoria($coleccionPartidas){
     // Array $partida
 
     $jugador = solicitarJugador();
-    $partida=$coleccionPartidas[indicePrimerPartidaGanada($coleccionPartidas,$jugador)];  
-    imprimirResultadoPartida($partida);
+    if (jugadorExiste($jugador, $coleccionPartidas)) {
+        if (indicePrimerPartidaGanada($coleccionPartidas,$jugador)==-1) {
+            echo "El jugador no gano ninguna partida\n";
+        }
+        else {
+            $partida=$coleccionPartidas[indicePrimerPartidaGanada($coleccionPartidas,$jugador)];
+            imprimirResultadoPartida($partida);
+        }
+    }
+    else {
+        echo "No existe jugador \n";
+    }
 }
 
+
 /**
- * Muestra el resumen de un jugador (Opcion 5)
- * @param array
+ * muestra el resumen de un jugador (Opcion 5)
+ * @param array $resumenJugador
  */
 function mostrarResumenJugador($resumenJugador){
     // Float $porcentajeVictorias
-
-    $porcentajeVictorias= ($resumenJugador["victorias"]*100) / $resumenJugador["partidas"];
+    if($resumenJugador["partidas"]!=0){
+        $porcentajeVictorias= ($resumenJugador["victorias"]*100)/$resumenJugador["partidas"];
+    }
+    else{
+        $porcentajeVictorias=0;
+    }
     echo "*************************************\n";
     echo "Jugador: ". $resumenJugador["nombreJugador"]."\n";
     echo "Partidas: ". $resumenJugador["partidas"]."\n";
     echo "Puntaje Total: ". $resumenJugador["puntaje"]."\n";
     echo "Victorias: ". $resumenJugador["victorias"]."\n";
-    echo "Porcentaje Victorias: ". $porcentajeVictorias."\n";
+    echo "Porcentaje Victorias: ". $porcentajeVictorias."%\n";
     echo "Adivinadas\n";
     echo "      Intento 1: ". $resumenJugador["intento1"]."\n";
     echo "      Intento 2: ". $resumenJugador["intento2"]."\n";
@@ -201,7 +240,6 @@ function mostrarResumenJugador($resumenJugador){
  * Muestra las opciones del menu en pantalla y devuelve el numero de opcion. (Punto 3)
  * @param array $coleccionPalabras
  * @param array $coleccionPartidas
- * @return int
  */
 function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
     
@@ -274,7 +312,8 @@ function seleccionarOpcion($coleccionPalabras,$coleccionPartidas) {
  * @return int
  */
 function indicePrimerPartidaGanada($coleccionPartidas,$nombreJugador){
-    // Int $indice
+    
+    // Int $indice, $i
     
     for($i=0; $i<COUNT($coleccionPartidas);$i++){
         if($coleccionPartidas[$i]["jugador"]==$nombreJugador){
@@ -394,8 +433,7 @@ function resumenJugador($coleccionPartidas){
             
             $numeroPartidas++;
             $puntajeTotal+= $coleccionPartidas[$i]["puntaje"];
-            
-            if ($coleccionPartidas[$i]["intentos"]!=0){
+            if ($coleccionPartidas[$i]["intentos"]<=6 && $coleccionPartidas[$i]["puntaje"]<>0){
                 $victorias++;
             }
             
@@ -438,32 +476,33 @@ function resumenJugador($coleccionPartidas){
 }
 
 /**
- * Ordena una coleccion en base al nombre de los jugadores y las palabras.
+ * Ordena una coleccion en base al nombre de los jugadores y las palabras a traves de la funcion de comparacion.
  * @param array $coleccionPartidas
  */
 function mostrarPartidaOrdenada($coleccionPartidas){
-    //INT $orden 
-    //ARRAY $a, $b
-
-    function comparacionJugador($a, $b) {
-            if ($a["jugador"] == $b["jugador"]) {
-                $orden = 0;
-            }
-            elseif($a["jugador"] < $b["jugador"]) {
-                $orden = -1;
-            }
-            else {
-                $orden = 1;
-            }
-            return $orden;
-    }
-    // La funcion array_multisort() ordena arreglos multidimensionales y SORT_ASC especifica que la ordene de forma ascendente.
-    array_multisort($coleccionPartidas, SORT_ASC);
     uasort($coleccionPartidas, "comparacionJugador");
     print_r($coleccionPartidas);
 }
 
-
+/**
+ * Compara los elementos del arreglo.
+ * @param array $unaPartida
+ * @param array $otraPartida
+ * @return int
+ */
+function comparacionJugador($unaPartida, $otraPartida) {
+    //Int $orden
+    if ($unaPartida["jugador"] == $otraPartida["jugador"]) {
+        $orden = 0;
+    }
+    elseif($unaPartida["jugador"] < $otraPartida["jugador"]) {
+        $orden = -1;
+    }
+    else {
+        $orden = 1;
+    }
+    return $orden;
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
